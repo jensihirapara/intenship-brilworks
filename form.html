@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>registration form</title>
+    <style>
+        *{
+            margin: 0;padding: 0;
+            text-align: center;
+        }
+        form{
+            border: 1px solid rgb(11, 21, 19);
+            margin: 22px;
+        }
+        h2{
+            color: grey;
+            margin: 3px;padding: 20px;
+            t;
+        }
+        label{
+            color: blue;
+        }
+        p{
+            color: blue;
+        }
+    button{
+        margin: 20px;
+        padding: 10px;
+        color: rgb(187, 5, 81);
+        background-color: rgba(161, 161, 236, 0.881);
+        border: none;
+        border-radius: 13px;
+    }
+    input{
+        border-radius:3px;
+    }
+    </style>
+</head>
+<body>
+    <form action="#" method="post">
+        <h2>registration form</h2>
+        <label for="name">full name:</label>
+        <input type="text"id="name" name="name" placeholder="enter your name" required>
+         <br><br>
+        <label for="contact">contact no:</label>
+        <input type="text" id="contact" name="contact" placeholder="enter your contact number" required><br><br>
+        <p>choose your gender:</p>
+        <input type="radio" id="male" name="gender" value="male">
+        <label for="male">male</label>
+        <input type="radio" id="female" name="gender" value="female">
+        <label for="female">female</label>
+        <input type="radio" id="other" name="gender" value="other">
+        <label for="other">other</label><br><br>
+        <label for="course">course:</label>
+        <input type="text" id="course" name="course" placeholder="enter your course" required><br><br>
+        <label for="semester" id="semester" name="semester">semester: </label>
+        <select name="semester" id="semester">
+            <option value="CHHOSE">1</option>
+            <option value="1">2</option>
+            <option value="2">3</option>
+            <option value="3">4</option>
+            <option value="4">5</option>
+            <option value="5">6</option>
+        </select><br><br>
+        <button>submit</button>
+    </form>
+
+</body>
+</html>
