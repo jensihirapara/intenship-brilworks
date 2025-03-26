@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h2>Editable HTML Form with JavaScript</h2>
+
+    <button onclick="openModal()">Add New Record</button>
+
+    <table id="data-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <!-- Popup Modal -->
+    <div id="popupModal" class="modal">
+      <div class="modal-header">
+        <span class="close-btn" onclick="closeModal()">×</span>
+        <span id="modalTitle">Add Record</span>
+      </div>
+      <label>Name:</label>
+      <input type="text" id="nameInput" /><br /><br />
+      <label>Email:</label>
+      <input type="email" id="emailInput" /><br /><br />
+      <button id="submitButton" onclick="saveRecord()">Add</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
