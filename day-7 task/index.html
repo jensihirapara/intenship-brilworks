@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Location Table</h1>
+
+    <input
+      type="text"
+      id="search"
+      placeholder="Search by name or description"
+      onkeyup="filterTable()"
+    />
+
+    <select id="statusFilter" onchange="filterTable()">
+      <option value="">All Statuses</option>
+      <option value="active">Active</option>
+      <option value="inactive">Inactive</option>
+    </select>
+
+    <table id="locationTable" border="1">
+        <thead>
+          <tr>
+            <th>Location Name</th>
+            <th>Description</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    <div class="pagination">
+        <button id="prevBtn" onclick="changePage(-1)" disabled>Previous</button>
+        <span id="pageNumber">Page 1</span>
+        <button id="nextBtn" onclick="changePage(1)">Next</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
