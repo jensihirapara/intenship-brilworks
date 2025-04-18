@@ -4,6 +4,7 @@ import './App.css';
 function App() {
   const [records, setRecords] = useState([]);
   const [formData, setFormData] = useState({ name: '', age: '' });
+  const [showModal, setShowModal] = useState(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -15,31 +16,44 @@ function App() {
     if (formData.name && formData.age) {
       setRecords([...records, formData]);
       setFormData({ name: '', age: '' });
+      setShowModal(false); // close the modal after adding
     }
   };
 
   return (
     <div className="center-wrapper">
       <h2>Record Entry</h2>
-      <form onSubmit={handleAddRecord}>
-        <input
-          type="text"
-          name="name"
-          placeholder="Name"
-          value={formData.name}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="number"
-          name="age"
-          placeholder="Age"
-          value={formData.age}
-          onChange={handleChange}
-          required
-        />
-        <button type="submit">Add Record</button>
-      </form>
+      <button onClick={() => setShowModal(true)}>+ Add Record</button>
+
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal">
+            <h3>Add Record</h3>
+            <form onSubmit={handleAddRecord}>
+              <input
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+              />
+              <input
+                type="number"
+                name="age"
+                placeholder="Age"
+                value={formData.age}
+                onChange={handleChange}
+                required
+              />
+              <div className="modal-buttons">
+                <button type="submit">Save</button>
+                <button type="button" onClick={() => setShowModal(false)}>Cancel</button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
 
       <h3>Records Table</h3>
       <table>
