@@ -1,0 +1,111 @@
+.App {
+  max-width: 900px;
+  margin: auto;
+  padding: 30px;
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th,
+td {
+  padding: 12px;
+  border: 1px solid #ccc;
+}
+
+thead {
+  background-color: #f1f1f1;
+}
+
+.pagination {
+  margin-top: 20px;
+}
+
+.btn {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  margin: 2px;
+}
+
+.btn-add {
+  background-color: #2ecc71;
+}
+
+.btn-view {
+  background-color: #3498db;
+}
+
+.btn-edit {
+  background-color: #f39c12;
+}
+
+.btn-delete {
+  background-color: #e74c3c;
+}
+
+.btn-save {
+  background-color: #27ae60;
+}
+
+.btn-cancel {
+  background-color: #95a5a6;
+}
+
+.search-input {
+  padding: 8px 14px;
+  width: 300px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+}
+
+/* MODAL STYLING */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.modal {
+  background: white;
+  padding: 30px;
+  border-radius: 8px;
+  width: 320px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+}
+
+.modal input {
+  margin: 10px 0;
+  padding: 10px;
+  font-size: 16px;
+}
+
+.modal-buttons {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  margin-top: 16px;
+  gap: 10px;
+}
+.active-page {
+  font-weight: bold;
+  border-bottom: 2px solid #7a6382;
+}
