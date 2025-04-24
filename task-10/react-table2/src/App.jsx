@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, useEffect } from "react";
 import { useTable, usePagination, useGlobalFilter } from "react-table";
 import "./App.css";
 import AddOrUpdateModal from "./components/AddOrUpdateModal";
@@ -23,7 +23,6 @@ const initialData = [
   { id: 17, name: "stuti", age: 29 },
   { id: 18, name: "rudra", age: 30 },
   { id: 19, name: "krish", age: 25 },
-  { id: 18, name: "ketu", age: 30 },
   { id: 20, name: "brinjal", age: 22 },
   { id: 21, name: "brij", age: 23 },
   { id: 22, name: "bulbul", age: 29 },
@@ -43,18 +42,18 @@ function GlobalFilter({ globalFilter, setGlobalFilter }) {
 
 export default function App() {
   const [data, setData] = useState(initialData);
-  const [editRow, setEditRow] = useState(null);
   const [editFormData, setEditFormData] = useState({
     id: "",
     name: "",
     age: "",
   });
+  const [itemPerPage, setItemPerPage] = useState(6);
   const [viewRecord, setViewRecord] = useState(false);
   const [showModal, setShowModal] = useState(false);
 
   const columns = useMemo(
     () => [
-      { Header: "#", accessor: "id" },
+      { Header: "sr no", accessor: "id" },
       { Header: "Name", accessor: "name" },
       { Header: "Age", accessor: "age" },
       {
@@ -74,21 +73,18 @@ export default function App() {
               className="btn btn-edit"
               onClick={() => handleEdit(row.original)}
             >
-              {" "}
               Edit
             </button>{" "}
             <button
               className="btn btn-delete"
               onClick={() => handleDelete(row.original.id)}
             >
-              {" "}
               Delete
             </button>
           </>
         ),
       },
     ],
-
     []
   );
 
@@ -106,37 +102,34 @@ export default function App() {
     nextPage,
     canPreviousPage,
     canNextPage,
+    setPageSize,
   } = useTable(
-    { columns, data, initialState: { pageSize: 4 } },
+    { columns, data, initialState: { pageSize: itemPerPage } },
     useGlobalFilter,
     usePagination
   );
 
-  const handleView = (row) => {
-    alert(`Name: ${row.name}\nAge: ${row.age}`);
-  };
+  useEffect(() => {
+    setPageSize(itemPerPage);
+  }, [itemPerPage, setPageSize]);
 
   const handleDelete = (id) => {
-    setData((prevData) => prevData.filter((item) => item.id !== id));
+    setData((prev) => prev.filter((item) => item.id !== id));
   };
 
   const handleEdit = (row) => {
     setEditFormData({ id: row.id, name: row.name, age: row.age });
     setShowModal(true);
   };
+
   const handleViewRecord = (row) => {
     setEditFormData({ id: row.id, name: row.name, age: row.age });
     setShowModal(true);
   };
 
-  const handleEditChange = (e) => {
-    const { name, value } = e.target;
-    setEditFormData((prev) => ({ ...prev, [name]: value }));
-  };
-
   const handleUpdateData = () => {
     const updated = data.map((item) =>
-      item.id === editFormData?.id ? { ...item, ...editFormData } : item
+      item.id === editFormData.id ? { ...item, ...editFormData } : item
     );
     setData(updated);
     setShowModal(false);
@@ -166,7 +159,6 @@ export default function App() {
       <button className="btn btn-add" onClick={() => setShowModal(true)}>
         Add Record
       </button>
-
       <GlobalFilter
         globalFilter={globalFilter}
         setGlobalFilter={setGlobalFilter}
@@ -183,90 +175,62 @@ export default function App() {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {page.map((row) => {
-            prepareRow(row);
-            return (
-              <tr {...row.getRowProps()}>
-                {row.cells.map((cell) => {
-                  if (
-                    editRow === row.original.id &&
-                    cell.column.id !== "Actions"
-                  ) {
-                    return (
-                      <td {...cell.getCellProps()}>
-                        <input
-                          name={cell.column.id}
-                          value={editFormData[cell.column.id]}
-                          onChange={handleEditChange}
-                        />
-                      </td>
-                    );
-                  } else if (cell.column.id === "Actions") {
-                    return (
-                      <td {...cell.getCellProps()}>
-                        {editRow === row.original.id ? (
-                          <button
-                            className="btn btn-save"
-                            onClick={() => handleUpdateData(row.original.id)}
-                          >
-                            Save
-                          </button>
-                        ) : (
-                          cell.render("Cell")
-                        )}
-                      </td>
-                    );
-                  } else {
-                    return (
-                      <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                    );
-                  }
-                })}
-              </tr>
-            );
-          })}
+          {page.length > 0 ? (
+            page.map((row) => {
+              prepareRow(row);
+              return (
+                <tr {...row.getRowProps()}>
+                  {row.cells.map((cell) => (
+                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
+                  ))}
+                </tr>
+              );
+            })
+          ) : (
+            <tr>no data find</tr>
+          )}
         </tbody>
       </table>
 
       <div className="pagination">
-        <button
-          onClick={() => gotoPage(0)}
-          disabled={!canPreviousPage}
-          className="btn"
-        >
+        <button onClick={() => gotoPage(0)} disabled={!canPreviousPage}>
           First
         </button>
-        <button
-          onClick={previousPage}
-          disabled={!canPreviousPage}
-          className="btn"
-        >
+        <button onClick={previousPage} disabled={!canPreviousPage}>
           Prev
         </button>
-
         {Array.from({ length: pageCount }, (_, i) => (
           <button
             key={i}
             onClick={() => gotoPage(i)}
-            className={`btn ${pageIndex === i ? "active-page" : ""}`}
+            className={pageIndex === i ? "active-page" : ""}
           >
             {i + 1}
           </button>
         ))}
-
-        <button onClick={nextPage} disabled={!canNextPage} className="btn">
+        <button onClick={nextPage} disabled={!canNextPage}>
           Next
         </button>
-        <button
-          onClick={() => gotoPage(pageCount - 1)}
-          disabled={!canNextPage}
-          className="btn"
-        >
+        <button onClick={() => gotoPage(pageCount - 1)} disabled={!canNextPage}>
           Last
         </button>
       </div>
+      {/* Pagination size dropdown */}
+      <div className="controls">
+        <label htmlFor="rowsPerPage">Rows per page: </label>
+        <select
+          id="rowsPerPage"
+          value={itemPerPage}
+          onChange={(e) => setItemPerPage(Number(e.target.value))}
+        >
+          <option value={5}>5</option>
+          <option value={6}>6</option>
+          <option value={10}>10</option>
+          <option value={15}>15</option>
+          <option value={20}>20</option>
+        </select>
+      </div>
 
-      {/* Modal */}
       <AddOrUpdateModal
         open={showModal}
         viewRecord={viewRecord}
