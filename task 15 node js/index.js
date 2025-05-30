@@ -55,28 +55,28 @@
 // server.listen(3000)
 // console.log('litsening on port 3000...')
 
-const http = require('http');
+// const http = require('http');
 
-const server = http.createServer((req, res) => {
-  console.log("Received a request");
+// const server = http.createServer((req, res) => {
+//   console.log("Received a request");
 
-  if (req.url === '/') {
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
-    res.write('Hello World');
-    res.end();
-  } 
-  else if (req.url === '/api/course') {
-    res.writeHead(200, { 'Content-Type': 'application/json' });
-    res.write(JSON.stringify([1, 2, 3]));
-    res.end();
-  }
-  else {
-    res.writeHead(404, { 'Content-Type': 'text/plain' });
-    res.write('Not Found');
-    res.end();
-  }
-});
+//   if (req.url === '/') {
+//     res.writeHead(200, { 'Content-Type': 'text/plain' });
+//     res.write('Hello World');
+//     res.end();
+//   } 
+//   else if (req.url === '/api/course') {
+//     res.writeHead(200, { 'Content-Type': 'application/json' });
+//     res.write(JSON.stringify([1, 2, 3]));
+//     res.end();
+//   }
+//   else {
+//     res.writeHead(404, { 'Content-Type': 'text/plain' });
+//     res.write('Not Found');
+//     res.end();
+//   }
+// });
 
-server.listen(3000, () => {
-  console.log('Listening on port 3000...');
-});
+// server.listen(3000, () => {
+//   console.log('Listening on port 3000...');
+// });

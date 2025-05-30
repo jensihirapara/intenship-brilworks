@@ -1,0 +1,84 @@
+/* Full screen semi-transparent background */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+
+/* Centered popup box */
+.popup-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #f5f7ff;
+  padding: 25px 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+  width: 320px;
+  z-index: 1001;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #344055;
+  text-align: center;
+}
+
+/* Input field style */
+.popup-modal input[type="text"] {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 15px 0 25px 0;
+  border: 2px solid #94a3b8;
+  border-radius: 8px;
+  font-size: 16px;
+  outline-color: #7b9cff;
+  transition: border-color 0.3s ease;
+}
+
+.popup-modal input[type="text"]:focus {
+  border-color: #7b9cff;
+}
+
+/* Buttons container */
+.popup-buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Save button */
+.save-btn {
+  flex: 1;
+  margin-right: 10px;
+  padding: 10px 0;
+  background-color: #7b9cff;
+  border: none;
+  color: white;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.save-btn:hover {
+  background-color: #5a7de0;
+}
+
+/* Cancel button */
+.cancel-btn {
+  flex: 1;
+  padding: 10px 0;
+  background-color: #e2e8f0;
+  border: none;
+  color: #344055;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.cancel-btn:hover {
+  background-color: #c5cee0;
+}
