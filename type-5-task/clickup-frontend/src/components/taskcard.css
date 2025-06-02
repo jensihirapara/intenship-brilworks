@@ -1,0 +1,29 @@
+.task-card {
+  background-color: #ffeef2;                 /* card ka background — baby pink shade */
+  border: 2px solid #ffc0cb;                 /* halka pink border */
+  border-radius: 16px;                       /* rounded corners for soft look */
+  padding: 16px;                             /* andar ka spacing */
+  margin: 10px 0;                            /* card ke upar neeche spacing */
+  box-shadow: 0 4px 6px rgba(255, 192, 203, 0.4);  /* halki pink shadow */
+  transition: transform 0.2s;   
+overflow: none;              /* hover effect ke liye smooth animation */
+}
+
+.task-card:hover {
+  transform: scale(1.02);                   /* thoda zoom effect on hover */
+  background-color: #fff0f5;                /* thoda light background jab hover karein */
+}
+
+.task-title {
+  font-size: 18px;                          /* title thoda bada aur bold */
+  font-weight: bold;
+  color: #d63384;                           /* dark pink title color */
+  margin-bottom: 8px;
+}
+
+.task-assignee,
+.task-status {
+  font-size: 14px;
+  color: #5c5c5c;                           /* dark gray color text */
+  margin: 2px 0;
+}

@@ -1,0 +1,25 @@
+/* src/components/taskboard.css */
+
+.task-board {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 30px;
+  padding: 0 20px;
+}
+
+.task-column {
+  flex: 1;
+  background-color: #ffe4f2;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.task-column h2 {
+  text-align: center;
+  margin-bottom: 12px;
+  color: #d63384;
+  font-size: 18px;
+  font-weight: bold;
+}
